@@ -1,13 +1,30 @@
 isPresent=$((RANDOM%3));
-if [ $isPresent -eq 0 ]
-then
-	echo "Employee is absent";
+partimeEmpHr=8;
+wagePerHr=20;
+Emp=0;
+
+case $isPresent in
+	0)
+		echo "Employee is absent";
+		workingHr=0;
+		Emp="Emp is absent";
+	;;
 	
-elif [ $isPresent -eq 1 ]
-then
-	echo "Employee is present";
+
+	1)
+		echo "Employee is present";
+		workingHr=16;
+		Emp="Emp is full-time"
+	;;
 	
-else
-	echo "Employee is working as part time";
-	
-fi
+
+	*)
+		echo "Employee is working as part time";
+		workingHr=$partimeEmpHr;
+		Emp="Emp is part-time"
+	;;
+esac	
+
+
+wages=$(($wagePerHr * $workingHr));
+echo "$Emp and has earned $wages";
